@@ -51,13 +51,13 @@ class Particle {
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.hypot(dx, dy);
-        
+
         // Collision between mouse and particle
         if (distance < mouse.radius && this.opacity <= 1) {
             // console.log('go');
-            this.opacity += .02;
+            this.opacity += 0.02;
         } else if (distance > mouse.radius) {
-            this.opacity -= .02;
+            this.opacity -= 0.02;
             if (this.opacity <= 0) {
                 this.opacity = 0;
             }
@@ -68,9 +68,15 @@ class Particle {
             if (this == particles[i]) {
                 continue;
             }
-            let distance = Math.hypot(this.x - particles[i].x, this.y - particles[i].y);
+            let distance = Math.hypot(
+                this.x - particles[i].x,
+                this.y - particles[i].y
+            );
             if (distance - this.radius * 2 < 0) {
-                let angle = Math.atan2(this.y - particles[i].y, this.x - particles[i].x)
+                let angle = Math.atan2(
+                    this.y - particles[i].y,
+                    this.x - particles[i].x
+                );
                 this.velocity.x = Math.cos(angle) * 2;
                 this.velocity.y = Math.sin(angle) * 2;
                 particles[i].velocity.x = -Math.cos(angle) * 2;
@@ -130,8 +136,8 @@ function animate() {
 init();
 animate();
 
-window.addEventListener('resize', (e) => {
+window.addEventListener("resize", (e) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     init();
-})
+});
